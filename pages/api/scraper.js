@@ -94,7 +94,7 @@ export default async function handler(req, res) {
           }
           console.log(formattedLinks);
 
-          /bot.sendMessage(process.env.TELEGRAM_CHAT_ID, formattedLinks, { parse_mode: 'HTML', disable_web_page_preview: true });
+          bot.sendMessage(process.env.TELEGRAM_CHAT_ID, formattedLinks, { parse_mode: 'HTML', disable_web_page_preview: true });
         }
       }
     } catch (error) {
