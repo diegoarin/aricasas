@@ -1,5 +1,4 @@
-// const { chromium } = require('playwright');
-const playwright = require('playwright-aws-lambda');
+const { chromium } = require('playwright');
 const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
@@ -15,8 +14,7 @@ const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
 */
 
 const getMercadoLibreLinks = async ({ browser, url }) => {
-  const context = await browser.newContext();
-  const page = await context.newPage();
+  const page = await browser.newPage();
   await page.goto(url);
 
   // const featuredLink = await page.$eval('a.ui-search-billboard__action-button', node => node.href)
@@ -81,8 +79,7 @@ const HOUSES_BY_NEIGHBORHOOD = [
 
 export default async function handler(req, res) {
   if (req.headers[process.env.HEADER_ARICAN_KEY] === process.env.HEADER_ARICAN_TOKEN) {
-    // const browser = await chromium.launch();
-    const browser = await playwright.launchChromium();
+    const browser = await chromium.launch();
 
     try {
       for (const neighborhoodInfo of HOUSES_BY_NEIGHBORHOOD) {
